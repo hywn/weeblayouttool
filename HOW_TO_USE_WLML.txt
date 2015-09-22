@@ -1,0 +1,8 @@
+WLML (Weeaboo Layout Markup Language) is meant to be fairly easy
+{
+-start 0 -end 100 -cut 50;
+-start 100 -end 200 -cut 25 -cut 75
+}
+
+WLML will ONLY save specified sections.
+Please put in empty sections, if they exist.
