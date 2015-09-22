@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -18,14 +19,21 @@ public class InputPanel extends JPanel {
 	private JLabel label = new JLabel("label");
 	private JButton parse = new JButton("parse");
 	private JButton importbut = new JButton("import code");
-	private JTextField imgpath = new JTextField("/mary/pictures/uberhaxor.jpg", 3);
+	private JButton export = new JButton("export");
+	private JTextField imgpath = new JTextField("/mary/pictures/uberhaxor.jpg", 20);
 	private JTextField codepath = new JTextField("/mary/text/text_lines.txt", 20);
-	private JTextArea editor = new JTextArea(10, 0);
+	private JTextArea editor = new JTextArea(13, 20);
 	private ImageUtil util = new ImageUtil();
+
+	JPanel codeArea = new JPanel();
+	JPanel controls = new JPanel();
+
+	int codeWidth = 300, height;
 
 	private Manager manager;
 
 	public InputPanel(int width, int height) {
+		this.height = height;
 
 		manager = Manager.getInstance();
 
@@ -37,11 +45,35 @@ public class InputPanel extends JPanel {
 		parse.addActionListener(new PButListener());
 		importbut.addActionListener(new IButListener());
 
-		add(parse, BorderLayout.EAST);
-		add(importbut);
-		add(codepath, BorderLayout.WEST);
-		add(imgpath, BorderLayout.NORTH);
-		add(new JScrollPane(editor), BorderLayout.SOUTH);
+		// controls.setLayout(new FlowLayout());
+		codeArea.setLayout(new BorderLayout());
+
+		controls.setSize(codeWidth, height);
+		controls.setPreferredSize(new Dimension(width - codeWidth, height));
+		codeArea.setSize(codeWidth, height);
+
+		// controls.add(parse, BorderLayout.EAST);
+		// controls.add(importbut);
+		controls.add(codepath, BorderLayout.WEST);
+		controls.add(imgpath, BorderLayout.NORTH);
+
+		codeArea.add(parse, BorderLayout.EAST);
+		codeArea.add(importbut, BorderLayout.WEST);
+		codeArea.add(export, BorderLayout.CENTER);
+		codeArea.add(new JScrollPane(editor), BorderLayout.SOUTH);
+
+		add(codeArea, BorderLayout.EAST);
+		add(controls, BorderLayout.WEST);
+
+	}
+
+	public void resizeWidth(int width) {
+		controls.setSize(width - codeWidth, height);
+		controls.setPreferredSize(new Dimension(width - codeWidth, height));
+
+		codeArea.setSize(codeWidth, height);
+		codeArea.setPreferredSize(new Dimension(codeWidth, height));
+		// repaint();
 
 	}
 
