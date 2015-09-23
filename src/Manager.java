@@ -1,12 +1,13 @@
 import java.awt.BorderLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.ContainerAdapter;
-import java.awt.event.ContainerEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 public class Manager {
@@ -64,6 +65,22 @@ public class Manager {
 		public void windowClosing(WindowEvent e) {
 			System.exit(0);
 
+		}
+
+	}
+
+	public void exportImages(String path) throws IOException {
+
+		BufferedImage[][] images = preview.getImages();
+
+		int counter = 0;
+
+		for (BufferedImage[] array : images) {
+			for (BufferedImage image : array) {
+				ImageIO.write(image, "png", new File(path + "image_" + counter + ".png"));
+				counter++;
+
+			}
 		}
 
 	}

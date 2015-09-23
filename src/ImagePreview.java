@@ -56,4 +56,9 @@ public class ImagePreview extends JPanel {
 
 	}
 
+	public BufferedImage[][] getImages() {
+		return images;
+
+	}
+
 }

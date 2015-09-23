@@ -22,6 +22,7 @@ public class InputPanel extends JPanel {
 	private JButton export = new JButton("export");
 	private JTextField imgpath = new JTextField("/mary/pictures/uberhaxor.jpg", 20);
 	private JTextField codepath = new JTextField("/mary/text/text_lines.txt", 20);
+	private JTextField exportLoc = new JTextField("/mary/pictures/testlayout/", 20);
 	private JTextArea editor = new JTextArea(13, 20);
 	private ImageUtil util = new ImageUtil();
 
@@ -44,6 +45,7 @@ public class InputPanel extends JPanel {
 
 		parse.addActionListener(new PButListener());
 		importbut.addActionListener(new IButListener());
+		export.addActionListener(new EButListener());
 
 		// controls.setLayout(new FlowLayout());
 		codeArea.setLayout(new BorderLayout());
@@ -56,6 +58,7 @@ public class InputPanel extends JPanel {
 		// controls.add(importbut);
 		controls.add(codepath, BorderLayout.WEST);
 		controls.add(imgpath, BorderLayout.NORTH);
+		controls.add(exportLoc);
 
 		codeArea.add(parse, BorderLayout.EAST);
 		codeArea.add(importbut, BorderLayout.WEST);
@@ -74,6 +77,22 @@ public class InputPanel extends JPanel {
 		codeArea.setSize(codeWidth, height);
 		codeArea.setPreferredSize(new Dimension(codeWidth, height));
 		// repaint();
+
+	}
+
+	class EButListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// export selection to files
+			try {
+				manager.exportImages(exportLoc.getText());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+		}
 
 	}
 
