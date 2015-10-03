@@ -105,4 +105,9 @@ public class Manager {
 
 	}
 
+	public int getPreviewHeight() {
+		return frame.getHeight() - panelHeight;
+
+	}
+
 }

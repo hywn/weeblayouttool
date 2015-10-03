@@ -26,9 +26,9 @@ public class ImagePreview extends JPanel {
 
 		g.setColor(Color.BLACK);
 
-		g.fillRect(0, 0, manager.getWidth(), manager.getHeight());
+		// g.fillRect(0, 0, manager.getWidth(), 600);
 
-		System.out.println(manager.getHeight());
+		// System.out.println(manager.getHeight());
 
 		int currHeight = 0;
 		int currWidth = 0;

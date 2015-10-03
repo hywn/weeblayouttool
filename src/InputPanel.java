@@ -47,12 +47,13 @@ public class InputPanel extends JPanel {
 		importbut.addActionListener(new IButListener());
 		export.addActionListener(new EButListener());
 
-		// controls.setLayout(new FlowLayout());
+		controls.setLayout(new FlowLayout());
 		codeArea.setLayout(new BorderLayout());
 
 		controls.setSize(codeWidth, height);
 		controls.setPreferredSize(new Dimension(width - codeWidth, height));
 		codeArea.setSize(codeWidth, height);
+		controls.setPreferredSize(new Dimension(codeWidth, height));
 
 		// controls.add(parse, BorderLayout.EAST);
 		// controls.add(importbut);
@@ -73,9 +74,12 @@ public class InputPanel extends JPanel {
 	public void resizeWidth(int width) {
 		controls.setSize(width - codeWidth, height);
 		controls.setPreferredSize(new Dimension(width - codeWidth, height));
+		
+		//controls.repaint();
 
 		codeArea.setSize(codeWidth, height);
 		codeArea.setPreferredSize(new Dimension(codeWidth, height));
+		
 		// repaint();
 
 	}
